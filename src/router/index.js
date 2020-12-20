@@ -26,5 +26,26 @@ export default function (/* { store, ssrContext } */) {
     base: process.env.VUE_ROUTER_BASE
   })
 
+  // 全局路由守卫
+  // Router.beforeEach((to, from, next) => {
+  //   const publicPages = ['/login', '/register', '/home']
+  //   const authRequired = !publicPages.includes(to.path)
+  //   const loggedIn = localStorage.getItem('user')
+  //
+  //   // 未登录则重定向至登录页
+  //   if (authRequired && !loggedIn) {
+  //     next('/login')
+  //   } else {
+  //     next()
+  //   }
+  // })
+
+  // Router.beforeEach((to, from, next) => {
+  //   if (to.matched.some(record => record.meta.requireAuth) && !store.getters['auth/isSignedIn']) {
+  //     next({ name: 'account-signin', query: { next: to.fullPath } })
+  //   } else {
+  //     next()
+  //   }
+  // })
   return Router
 }
