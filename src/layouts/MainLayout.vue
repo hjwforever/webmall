@@ -33,7 +33,7 @@
             icon="mdi-menu"
         />
 
-        <q-btn flat no-caps no-wrap class="q-ml-xs" v-if="$q.screen.gt.xs">
+        <q-btn v-if="$q.screen.gt.xs" flat no-caps no-wrap class="q-ml-xs" >
 <!--          <q-icon :name="fabYoutube" color="red" size="28px" />-->
           <q-icon name="img:http://img.aruoxi.top/webmall/logo.png" color="red" size="28px" />
           <q-toolbar-title shrink class="text-weight-bold">
@@ -83,15 +83,18 @@
       </q-toolbar>
     </q-header>
     <q-footer v-if="$q.screen.lt.sm" reveal elevated class="bg-primary text-white" height-hint="98">
-      <q-tabs align="center justify-evenly items-center">
+      <q-tabs class="center justify-evenly items-center">
         <q-route-tab to="/index" replace label="Index" icon="mdi-home" />
         <q-route-tab to="/category" replace label="Category" icon="mdi-menu" />
         <q-route-tab to="/cart" replace label="Cart" icon="mdi-cart-variant" />
         <q-route-tab to="/user" replace label="Mine" icon="mdi-account" />
       </q-tabs>
     </q-footer>
+    <q-drawer v-model="leftDrawerOpen" side="left" overlay elevated>
+      <q-toolbar-title>Left</q-toolbar-title>
+    </q-drawer>
     <q-drawer v-model="right" side="right" overlay elevated>
-
+      <q-toolbar-title>Right</q-toolbar-title>
     </q-drawer>
     <q-page-container v-scroll="scrolled">
       <router-view />
@@ -117,7 +120,8 @@ export default {
   data () {
     return {
       search: '',
-      right: false
+      right: false,
+      leftDrawerOpen: false
     }
   },
   methods: {

@@ -2,14 +2,15 @@
   <div>
     <q-layout view="hHh LpR fff" style="font-family: 微软雅黑">
       <q-header class="bg-white text-primary shadow-1">
-        <q-toolbar class="fit row wrap justify-between">
+        <q-toolbar class="fit row wrap justify-between items-center">
           <q-btn to="/index" replace flat no-caps no-wrap class="q-ml-xs">
             <q-icon name="img:http://img.aruoxi.top/webmall/logo.png" color="red" size="28px" />
             <q-toolbar-title shrink class="text-weight-bold">
               WebMall
             </q-toolbar-title>
           </q-btn>
-          <q-toolbar-title class="col-auto offset-8">webmall v1.0.0</q-toolbar-title>
+          <q-toolbar-title class="absolute-right">webmall v1.0.0</q-toolbar-title>
+          <q-space />
         </q-toolbar>
       </q-header>
       <q-footer class="bg-white text-blue-grey-4">
@@ -61,6 +62,17 @@ export default {
     }
   },
   mounted: function () {
+  },
+  computed: {
+    loggedIn () {
+      return this.$store.state.auth.status.loggedIn
+    }
+  },
+  created () {
+    if (this.loggedIn) {
+      // this.$q.notify('已登录')
+      this.$router.push('/user')
+    }
   }
 }
 </script>

@@ -11,8 +11,8 @@
             narrow-indicator
             class="text-black"
         >
-          <q-tab name="mails" label="用户密码登录" />
-          <q-tab name="alarms" label="手机号登录" />
+          <q-tab type="reset" name="mails" label="用户密码登录" @click="onReset" />
+          <q-tab type="reset" name="alarms" label="手机号登录" @click="onReset" />
         </q-tabs>
         <div class="q-gutter-y-sm">
           <q-tab-panels v-model="tab" class="text-center">
@@ -23,10 +23,10 @@
                       outlined
                       clearable
                       clear-icon="cancel"
-                      v-model="name"
+                      v-model="username"
                       dense
                       debounce="500"
-                      label="用户名:test"
+                      placeholder="用户名或邮箱:test"
                       :lazy-rules="lazy"
                       square
                       :rules="[
@@ -34,7 +34,7 @@
                     ]"
                   >
                     <template v-slot:prepend>
-                      <q-icon name="event" />
+                      <q-icon name="mdi-account" />
                     </template>
                   </q-input>
                 </div>
@@ -49,13 +49,13 @@
                       v-model="password"
                       dense
                       debounce="500"
-                      label="密码:test"
+                      placeholder="密码:test"
                       :lazy-rules="lazy"
                       square
                       :rules="[(val) => (val && val.length > 0) || '请输入密码']"
                   >
                     <template v-slot:prepend>
-                      <q-icon name="event" />
+                      <q-icon name="vpn_key" />
                     </template>
                     <template v-slot:append>
                       <q-icon
@@ -76,10 +76,10 @@
                       outlined
                       clearable
                       clear-icon="cancel"
-                      v-model="name"
+                      v-model="phone"
                       dense
                       debounce="500"
-                      label="手机号"
+                      placeholder="手机号"
                       :lazy-rules="lazy"
                       square
                       :rules="[
@@ -87,7 +87,7 @@
                     ]"
                   >
                     <template v-slot:prepend>
-                      <q-icon name="event" />
+                      <q-icon name="mdi-phone" />
                     </template>
                   </q-input>
                 </div>
@@ -100,13 +100,13 @@
                       v-model="password"
                       dense
                       debounce="500"
-                      label="验证码"
+                      placeholder="验证码"
                       :lazy-rules="lazy"
                       square
                       :rules="[(val) => (val && val.length > 0) || '请输入密码']"
                   >
                     <template v-slot:prepend>
-                      <q-icon name="event" />
+                      <q-icon name="mdi-mail" />
                     </template>
                     <template v-slot:after>
                       <q-btn
@@ -201,6 +201,8 @@
 </template>
 
 <script>
+import User from 'src/models/user'
+
 export default {
   name: 'Login',
   data () {
@@ -236,9 +238,9 @@ export default {
       },
       lazy: true,
       tab: 'mails',
-      name: null,
+      username: null,
+      phone: null,
       password: null,
-      accept: false,
       isPwd: true,
       autoLogin: true,
       card: false,
@@ -251,30 +253,44 @@ export default {
   },
   methods: {
     onSubmit () {
-      if (this.name !== 'test' || this.password !== 'test') {
-        this.$q.notify({
-          type: 'negative',
-          message: '用户名或密码不正确'
+      if (this.username && this.password) {
+        const notif = this.$q.notify({
+          type: 'ongoing',
+          spinner: true,
+          message: '登录中...'
         })
-        return
+        this.$store.dispatch('auth/login', new User(this.username, this.password)).then(
+          () => {
+            setTimeout(() => {
+              notif({
+                type: 'positive',
+                message: '用户' + this.username + '登录成功!',
+                textColor: 'white',
+                spinner: null,
+                timeout: 1000
+              })
+              this.$router.push('/user') // login successfully, go to the user module
+            }, 1000)
+          },
+          error => {
+            setTimeout(() => {
+              notif({
+                type: 'negative',
+                message: '用户' + this.username + '登录失败! ' + error.toString(),
+                textColor: 'white',
+                spinner: null,
+                timeout: 1000
+              })
+            }, 1000)
+          }
+        )
       }
-      this.loginLogin = true
-      setTimeout(() => {
-        // we're done, we reset loading state
-        this.$q.notify({
-          type: 'positive',
-          message: '登录成功'
-        })
-        this.loginLogin = true
-        this.$router.push({
-          path: '/'
-        })
-      }, 2000)
     },
     onReset () {
-      this.name = null
-      this.age = null
-      this.accept = false
+      this.username = ''
+      this.password = ''
+      this.email = ''
+      // this.phone = ''
     },
     mouseOver (iconKey, event) {
       this.activeForLoginType(iconKey, 'text-primary')
@@ -299,7 +315,7 @@ export default {
 </script>
 
 <style scoped>
-@import '../assets/icons/social_platform_icons.css';
+@import '../../assets/icons/social_platform_icons.css';
 
 .q-tab-panel {
 }
