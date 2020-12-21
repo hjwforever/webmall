@@ -5,7 +5,8 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       {
-        path: '/index',
+        path: '',
+        alias: '/index',
         component: () => import('pages/Index.vue')
       },
       {
@@ -18,7 +19,7 @@ const routes = [
       },
       {
         path: '/user',
-        component: () => import('pages/User')
+        component: () => import('pages/user')
       }
     ]
   },
@@ -28,7 +29,7 @@ const routes = [
     children: [
       {
         path: '',
-        component: () => import('pages/User/Login1.vue')
+        component: () => import('pages/user/Login1.vue')
       }
     ]
   },
@@ -38,7 +39,7 @@ const routes = [
     children: [
       {
         path: '',
-        component: () => import('pages/User/Register.vue')
+        component: () => import('pages/user/Register.vue')
       }
     ]
   },

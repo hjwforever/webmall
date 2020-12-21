@@ -7,7 +7,7 @@
 // https://quasar.dev/quasar-cli/quasar-conf-js
 /* eslint-env node */
 
-module.exports = function (/* ctx */) {
+module.exports = function (ctx) {
   return {
     // https://quasar.dev/quasar-cli/supporting-ts
     supportTS: false,
@@ -62,7 +62,13 @@ module.exports = function (/* ctx */) {
 
       // Options below are automatically set depending on the env, set them if you want to override
       // extractCSS: false,
-
+      env: ctx.dev
+        ? {
+          VUE_APP_BASE_API: 'http://localhost:8086/api'
+        }
+        : {
+          VUE_APP_BASE_API: 'https://webmall-server.herokuapp.com/api'
+        },
       // https://quasar.dev/quasar-cli/handling-webpack
       extendWebpack (cfg) {
         cfg.module.rules.push({

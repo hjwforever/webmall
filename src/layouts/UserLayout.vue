@@ -17,8 +17,13 @@
         <div class="q-mb-lg">
           <div class="text-center q-mb-sm">
             <span class="inline-block">Web Mall Pro</span>
-            <q-btn type="a" target="_blank" unelevated size="12px" dense
-                   href="https://github.com/hjwforever/webmall/tree/dev">
+            <q-btn
+                type="a"
+                target="_blank"
+                unelevated
+                size="12px"
+                dense
+                href="https://github.com/hjwforever/webmall/tree/dev">
               <q-icon name="ti-github q-mx-md" />
             </q-btn>
             <span class="inline-block">Web Mall</span>

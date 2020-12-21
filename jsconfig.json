@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "http://localhost:8086/api",
     "paths": {
       "src/*": [
         "src/*"

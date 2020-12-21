@@ -33,7 +33,7 @@
             icon="mdi-menu"
         />
 
-        <q-btn v-if="$q.screen.gt.xs" flat no-caps no-wrap class="q-ml-xs" >
+        <q-btn v-if="$q.screen.gt.xs" to="/" flat no-caps no-wrap class="q-ml-xs" >
 <!--          <q-icon :name="fabYoutube" color="red" size="28px" />-->
           <q-icon name="img:http://img.aruoxi.top/webmall/logo.png" color="red" size="28px" />
           <q-toolbar-title shrink class="text-weight-bold">
@@ -44,7 +44,7 @@
         <q-space />
 
         <div class="WM__toolbar-input-container row no-wrap">
-          <q-input rounded outlined dense placeholder="Search" class="bg-white col" >
+          <q-input rounded outlined dense placeholder="Search" class="bg-white col" v-model="search">
             <template v-slot:append>
               <q-icon name="search" />
             </template>

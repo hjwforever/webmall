@@ -1,12 +1,12 @@
-import axios from 'axios'
-
-const API_URL = 'http://localhost:8086/api/'
+// import axios from 'axios'
+import axios from '../boot/axios'
+// const API_URL = 'http://localhost:8086/api/'
 // const API_URL = 'http://aruoxi-nodejs-mysql.herokuapp.com/api/'
 
 class AuthService {
   login (user) {
     return axios
-      .post(API_URL + 'signin', {
+      .post('signin', {
         username: user.username,
         password: user.password
       })
@@ -24,7 +24,7 @@ class AuthService {
   }
 
   register (user) {
-    return axios.post(API_URL + 'signup', {
+    return axios.post('signup', {
       username: user.username,
       email: user.email,
       password: user.password
