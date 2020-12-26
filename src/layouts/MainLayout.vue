@@ -1,5 +1,6 @@
 <template>
-  <q-layout view="hHh LpR fFf" class="q-ma-lg-lg">
+  <q-layout view="hHh LpR lFf" class="q-ma-lg-lg">
+    <!--模拟系统栏-->
 <!--    <q-header elevated class="bg-primary text-white" height-hint="98">-->
 <!--      <q-bar class="mobile">-->
 <!--        <q-icon name="laptop_chromebook" />-->
@@ -54,30 +55,43 @@
         <q-space />
 
         <div class="q-gutter-sm row items-center no-wrap">
+          <q-btn to="cart" round dense flat color="blue-8" icon="mdi-cart-variant">
+            <q-badge color="red" text-color="white" floating transparent>
+              2
+            </q-badge>
+            <q-tooltip content-class="bg-indigo" transition-show="rotate" transition-hide="rotate">
+              Cart
+            </q-tooltip>
+          </q-btn>
+          <q-btn round dense flat color="blue-8" icon="mdi-bell-outline">
+            <q-badge color="red" text-color="white" floating transparent>
+              2
+            </q-badge>
+            <q-tooltip content-class="bg-indigo" transition-show="rotate" transition-hide="rotate">
+              Notifications
+            </q-tooltip>
+          </q-btn>
           <q-btn
               round
               dense
               flat
               color="blue-8"
               icon="mdi-message-text"
-              v-if="$q.screen.gt.sm"
               @click="right = !right">
-            <q-badge color="blue" text-color="white" floating>
+            <q-badge color="blue" text-color="white" floating transparent>
               1
             </q-badge>
-            <q-tooltip>Messages</q-tooltip>
-          </q-btn>
-          <q-btn round dense flat color="blue-8" icon="mdi-bell-outline">
-            <q-badge color="red" text-color="white" floating>
-              2
-            </q-badge>
-            <q-tooltip>Notifications</q-tooltip>
+            <q-tooltip content-class="bg-indigo" transition-show="rotate" transition-hide="rotate">
+              Messages
+            </q-tooltip>
           </q-btn>
           <q-btn round flat to="/user/login" >
             <q-avatar size="26px">
               <img src="https://cdn.quasar.dev/img/boy-avatar.png" alt="avatar">
             </q-avatar>
-            <q-tooltip>Account</q-tooltip>
+            <q-tooltip content-class="bg-indigo" transition-show="rotate" transition-hide="rotate">
+              Account
+            </q-tooltip>
           </q-btn>
         </div>
       </q-toolbar>
@@ -90,8 +104,26 @@
         <q-route-tab to="/user" replace label="Mine" icon="mdi-account" />
       </q-tabs>
     </q-footer>
-    <q-drawer v-model="leftDrawerOpen" side="left" overlay elevated>
-      <q-toolbar-title>Left</q-toolbar-title>
+    <q-drawer
+        v-model="leftDrawerOpen"
+        show-if-above
+
+        :mini="!leftDrawerOpen || miniState"
+        @mouseover="miniState = false"
+        @mouseout="miniState = true"
+        mini-to-overlay
+
+        :width="200"
+        :breakpoint="500"
+        bordered
+        content-class="bg-grey-3">
+      <q-list>
+        <essential-link
+            v-for="(link, index) in essentialLinks"
+            :key="index"
+            v-bind="link"
+        />
+      </q-list>
     </q-drawer>
     <q-drawer v-model="right" side="right" overlay elevated>
       <q-toolbar-title>Right</q-toolbar-title>
@@ -115,20 +147,61 @@
 <script>
 import { fabYoutube, fabGithub } from '@quasar/extras/fontawesome-v5'
 import { debounce } from 'quasar'
+import EssentialLink from '../components/EssentialLink'
+const linksData = [
+  {
+    title: 'Home',
+    icon: 'mdi-home',
+    to: 'index'
+  },
+  {
+    title: 'Category',
+    caption: '分类',
+    icon: 'mdi-menu',
+    to: 'category'
+  },
+  {
+    title: 'Cart',
+    caption: '购物车',
+    icon: 'mdi-cart-variant',
+    to: 'cart'
+  },
+  {
+    title: 'Mine',
+    caption: '我的',
+    icon: 'mdi-account',
+    to: 'user'
+  },
+  {
+    title: 'About',
+    caption: '关于',
+    icon: 'mdi-information-variant',
+    to: 'about'
+  },
+  {
+    title: 'Help',
+    caption: '帮助',
+    icon: 'help',
+    to: 'help'
+  }
+]
 
 export default {
-  data () {
+  components: { EssentialLink },
+  data() {
     return {
       search: '',
       right: false,
-      leftDrawerOpen: false
+      leftDrawerOpen: false,
+      essentialLinks: linksData,
+      miniState: true
     }
   },
   methods: {
-    scrolled: debounce(function (position) {
+    scrolled: debounce(function(position) {
     }, 200)
   },
-  created () {
+  created() {
     this.fabYoutube = fabYoutube
     this.fabGithub = fabGithub
   }

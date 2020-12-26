@@ -5,17 +5,17 @@
 <script>
 export default {
   name: 'RegisterResult',
-  data () {
+  data() {
     return {
       email: ''
     }
   },
-  mounted () {
+  mounted() {
     // this.email = this.$q.localStorage.getItem('name')
     this.getParams()
   },
   methods: {
-    getParams () {
+    getParams() {
       this.email = this.$route.query.email
     }
   },

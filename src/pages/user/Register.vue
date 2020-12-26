@@ -130,7 +130,7 @@ import User from 'src/models/user'
 
 export default {
   name: 'Register',
-  data () {
+  data() {
     return {
       username: null,
       email: null,
@@ -144,7 +144,7 @@ export default {
     }
   },
   methods: {
-    onSubmit () {
+    onSubmit() {
       this.$refs.form.validate().then(isValid => {
         if (isValid) {
           const notif = this.$q.notify({
@@ -179,14 +179,14 @@ export default {
         }
       })
     },
-    onReset () {
+    onReset() {
       this.username = ''
       this.password = ''
       this.email = ''
     }
   },
   computed: {
-    passwordValida: function () {
+    passwordValida: function() {
       return this.password === this.confirmPassword
     }
   }

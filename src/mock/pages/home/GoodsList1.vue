@@ -1,14 +1,15 @@
 <template>
-  <q-page-container class="overflow-auto fit">
-    <div class="q-mx-sm q-mt-sm q-pb-md text-grey-8 text-center no-scroll">
+  <q-page-container class="overflow-auto">
+    <div class="q-mx-sm q-mt-sm q-pb-md text-grey-8 text-center">
       <sc-page
           :items="goodsData"
           :per-number="size"
-          item-class="col-xl-1 col-lg-2 col-md-3 col-sm-4 col-xs-6"
+          item-class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12"
       >
         <template v-slot:item="props">
           <q-intersection
-              transition="flip-right">
+              once
+              transition="scale">
             <sc-shadow>
               <q-card flat class="no-border-radius q-pb-sm">
                 <q-chip
@@ -21,14 +22,30 @@
                     class="q-ma-sm absolute-top-right"
                     square
                 ></q-chip>
+<!--                <q-chip-->
+<!--                    outline-->
+<!--                    size="sm"-->
+<!--                    :label="props.item.labels[0].label"-->
+<!--                    :color="props.item.labels[0].color"-->
+<!--                    :class="props.item.labels[0].bgColor"-->
+<!--                    :style="props.item.labels[0].style"-->
+<!--                    class="q-ma-sm absolute-top-right"-->
+<!--                    square-->
+<!--                ></q-chip>-->
+<!--                <q-img-->
+<!--                    :src="props.item.url"-->
+<!--                    width="50%"-->
+<!--                    class="q-mt-md"-->
+<!--                /> -->
                 <q-img
-                    :src="props.item.imgUrl"
+                    :src="props.item.imgSrc"
                     width="50%"
                     class="q-mt-md"
                 />
                 <q-card-section>
                   <q-item-label class="text-bold">{{ props.item.name }}</q-item-label>
-                  <q-item-label class="text-grey q-py-sm">{{ props.item.description }}</q-item-label>
+<!--                  <q-item-label class="text-grey q-py-sm">{{ props.item.description }}</q-item-label>-->
+                  <q-item-label class="text-grey q-py-sm">{{ props.item.desc }}</q-item-label>
                   <q-item-label class="text-pink">¥ {{ props.item.price }} 元</q-item-label>
                 </q-card-section>
               </q-card>
@@ -67,9 +84,9 @@ export default {
             return {
               name: good.name,
               labelData: good.labels[0],
-              description: good.description,
+              desc: good.description,
               price: good.price,
-              imgUrl: good.imgUrl
+              imgSrc: good.imgUrl
             }
           })
           this.$q.notify({

@@ -1,10 +1,15 @@
 <template>
-  <h5>Category</h5>
+  <div>
+    <h5>Category</h5>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'Category'
+  name: 'Category',
+  created() {
+
+  }
 }
 </script>
 

@@ -29,7 +29,7 @@ const routes = [
     children: [
       {
         path: '',
-        component: () => import('pages/user/Login1.vue')
+        component: () => import('pages/user/Login.vue')
       }
     ]
   },
@@ -43,18 +43,18 @@ const routes = [
       }
     ]
   },
-  {
-    path: '/user/registerResult',
-    name: 'registerResult',
-    props: true,
-    component: () => import('layouts/UserLayout.vue'),
-    children: [
-      {
-        path: '',
-        component: () => import('pages/RegisterResult.vue')
-      }
-    ]
-  },
+  // {
+  //   path: '/user/registerResult',
+  //   name: 'registerResult',
+  //   props: true,
+  //   component: () => import('layouts/UserLayout.vue'),
+  //   children: [
+  //     {
+  //       path: '',
+  //       component: () => import('pages/RegisterResult.vue')
+  //     }
+  //   ]
+  // },
   {
     path: '*',
     component: () => import('pages/Error404.vue')

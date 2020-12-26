@@ -4,7 +4,7 @@ import axios from '../boot/axios'
 // const API_URL = 'http://aruoxi-nodejs-mysql.herokuapp.com/api/'
 
 class AuthService {
-  login (user) {
+  login(user) {
     return axios
       .post('signin', {
         username: user.username,
@@ -19,11 +19,11 @@ class AuthService {
       })
   }
 
-  logout () {
+  logout() {
     localStorage.removeItem('user')
   }
 
-  register (user) {
+  register(user) {
     return axios.post('signup', {
       username: user.username,
       email: user.email,

@@ -5,7 +5,7 @@ export function someAction (context) {
 import AuthService from '../../services/auth.service'
 import { Notify } from 'quasar'
 
-export function login ({ commit }, user) {
+export function login({ commit }, user) {
   return AuthService.login(user).then(
     user => {
       commit('loginSuccess', user)
@@ -20,14 +20,14 @@ export function login ({ commit }, user) {
     }
   )
 }
-export function logout ({ commit }) {
+export function logout({ commit }) {
   AuthService.logout()
   commit('logout')
   Notify.create({
     message: 'Logout Successfully'
   })
 }
-export function register ({ commit }, user) {
+export function register({ commit }, user) {
   return AuthService.register(user).then(
     response => {
       commit('registerSuccess')

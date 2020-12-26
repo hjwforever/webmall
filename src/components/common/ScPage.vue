@@ -2,10 +2,10 @@
   <div>
     <div class="row">
       <div
-        class="q-pa-sm"
-        :class="itemClass"
-        :key="index"
-        v-for="(item, index) in perPageItems"
+          class="q-pa-sm"
+          :class="itemClass"
+          :key="index"
+          v-for="(item, index) in perPageItems"
       >
         <slot name="item" :item="item"></slot>
       </div>
@@ -43,7 +43,7 @@
             ><span>页</span>
           </div>
           <div class="col-auto">
-            <span class="q-pl-sm q-pr-xs text-grey-7">每页数</span>
+            <span class="q-pl-sm q-pr-xs text-grey-7">每页个数</span>
             <q-chip
                 square
                 color="primary"
@@ -73,7 +73,7 @@
           <div class="col-sm-auto col-xs-12">
             <div class="row justify-center">
               <div class="col-auto">
-                <span class="q-pl-sm q-pr-xs text-grey-7">每页数</span>
+                <span class="q-pl-sm q-pr-xs text-grey-7">每页个数</span>
                 <q-chip
                   square
                   color="primary"
@@ -131,31 +131,31 @@ export default {
       default: 6
     }
   },
-  data () {
+  data() {
     return {
       current: 1,
       inputPage: 1
     }
   },
   methods: {
-    changePage () {
+    changePage() {
       this.current = parseInt(this.inputPage)
     }
   },
   computed: {
-    maxPage () {
+    maxPage() {
       return Math.ceil(this.items.length / this.perNumber)
     },
-    perPageItems () {
+    perPageItems() {
       const start = (this.current - 1) * this.perNumber
       return this.items.slice(start, start + this.perNumber)
     },
-    total () {
+    total() {
       return this.items.length
     }
   },
   watch: {
-    current (newValue, oldValue) {
+    current(newValue, oldValue) {
       this.inputPage = newValue
     }
   }

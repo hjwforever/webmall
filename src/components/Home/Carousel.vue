@@ -23,7 +23,7 @@
 <script>
 export default {
   name: 'Carousel',
-  data () {
+  data() {
     return {
       slide: 1,
       autoplay: 2500,

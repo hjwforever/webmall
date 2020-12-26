@@ -1,9 +1,17 @@
 <template>
           <q-select
-              ref="search" dark dense use-input hide-selected
+              ref="search"
+dark
+dense
+use-input
+hide-selected
               class="mobile-hide GL__toolbar-select"
-              color="black" :stack-label="false" label="Search or jump to..."
-              v-model="text" :options="filteredOptions" @filter="filter"
+              color="black"
+:stack-label="false"
+label="Search or jump to..."
+              v-model="text"
+:options="filteredOptions"
+@filter="filter"
               style="width: 300px"
           >
 
@@ -63,7 +71,7 @@ export default {
     }
   },
   methods: {
-    filter (val, update) {
+    filter(val, update) {
       if (this.options === null) {
         // load data
         setTimeout(() => {
@@ -90,8 +98,8 @@ export default {
             type: 'All GitHub'
           },
           ...this.options
-              .filter(op => op.toLowerCase().includes(val.toLowerCase()))
-              .map(op => ({ label: op }))
+            .filter(op => op.toLowerCase().includes(val.toLowerCase()))
+            .map(op => ({ label: op }))
         ]
       })
     }

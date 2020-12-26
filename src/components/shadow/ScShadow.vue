@@ -1,7 +1,7 @@
 <template>
   <div
       class="cursor-pointer"
-      :class="{'sc-shadow-blue text-primary ': active, 'text-grey-8': !active}"
+      :class="{'sc-shadow-blue text-primary ': active,'shadow-24': active, 'text-grey-8': !active,'shadow-3': !active}"
       @mouseover="select()"
       @mouseleave="clear()">
     <slot></slot>
@@ -11,7 +11,7 @@
 <script>
 export default {
   name: 'ScShadow',
-  data () {
+  data() {
     return {
       active: false
     }
@@ -19,10 +19,10 @@ export default {
   props: {
   },
   methods: {
-    select () {
+    select() {
       this.active = true
     },
-    clear () {
+    clear() {
       this.active = false
     }
   }

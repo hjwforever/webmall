@@ -1,10 +1,11 @@
 <template>
-  <q-field :square="fieldSquare"
-           :dense="fieldDense"
-           outlined
-           :style="fieldStyle"
-           v-model="startAndEndDateFormat"
-           :rules="rules">
+  <q-field
+      :square="fieldSquare"
+      :dense="fieldDense"
+      outlined
+      :style="fieldStyle"
+      v-model="startAndEndDateFormat"
+      :rules="rules">
     <template v-slot:control>
       <div class="self-center full-width no-outline" tabindex="0">
         {{ startAndEndDateFormat }}

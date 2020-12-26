@@ -57,23 +57,23 @@
 export default {
   name: 'UserLayout',
   props: {},
-  data () {
+  data() {
     return {
       topMarginClass: 'q-mt-lg'
     }
   },
   methods: {
-    topMargin () {
+    topMargin() {
     }
   },
-  mounted: function () {
+  mounted: function() {
   },
   computed: {
-    loggedIn () {
+    loggedIn() {
       return this.$store.state.auth.status.loggedIn
     }
   },
-  created () {
+  created() {
     if (this.loggedIn) {
       // this.$q.notify('已登录')
       this.$router.push('/user')
