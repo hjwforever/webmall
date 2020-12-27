@@ -3,7 +3,7 @@
     <div class="q-mx-sm q-mt-sm q-pb-md text-grey-8 text-center no-scroll">
       <sc-page
           :items="goodsData"
-          :per-number="size"
+          :per-number="size || 9"
           item-class="col-xl-1 col-lg-2 col-md-3 col-sm-4 col-xs-6"
       >
         <template v-slot:item="props">

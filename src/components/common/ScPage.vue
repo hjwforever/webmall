@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="row">
+    <div class="row" v-if="items.length !== 0">
       <div
           class="q-pa-sm"
           :class="itemClass"
@@ -9,6 +9,14 @@
       >
         <slot name="item" :item="item"></slot>
       </div>
+    </div>
+    <div v-else class="row">
+      <q-card v-for="key in 10" :key="key" flat class="q-pa-sm" style="max-width: 400px" :class="itemClass">
+        <q-skeleton height="150px" square />
+        <q-card-section>
+          <q-skeleton v-for="(width, index) in widths" :key="index" type="text" :width="width" class="q-mx-auto text-subtitle1" />
+        </q-card-section>
+      </q-card>
     </div>
     <div class="q-mt-sm">
       <slot name="page">
@@ -113,7 +121,7 @@ export default {
     itemClass: {
       type: String,
       required: false,
-      default: 'col-12'
+      default: 'col-xl-1 col-lg-2 col-md-3 col-sm-4 col-xs-6'
     },
     max: {
       type: Number,
@@ -134,7 +142,8 @@ export default {
   data() {
     return {
       current: 1,
-      inputPage: 1
+      inputPage: 1,
+      widths: ['50%', '70%', '50%']
     }
   },
   methods: {

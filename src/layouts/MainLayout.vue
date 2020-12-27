@@ -29,7 +29,7 @@
             flat
             dense
             round
-            @click="leftDrawerOpen = !leftDrawerOpen; $store.dispatch('auth/logout')"
+            @click="leftDrawerOpen = !leftDrawerOpen"
             aria-label="Menu"
             icon="mdi-menu"
         />
@@ -55,6 +55,13 @@
         <q-space />
 
         <div class="q-gutter-sm row items-center no-wrap">
+          <q-btn
+              color="secondary"
+              @click="$q.fullscreen.toggle()"
+              :icon="$q.fullscreen.isActive ? 'fullscreen_exit' : 'fullscreen'"
+              :label="$q.fullscreen.isActive ? '退出全屏' : '全屏'"
+          />
+
           <q-btn to="cart" round dense flat color="blue-8" icon="mdi-cart-variant">
             <q-badge color="red" text-color="white" floating transparent>
               2
@@ -85,13 +92,17 @@
               Messages
             </q-tooltip>
           </q-btn>
-          <q-btn round flat to="/user/login" >
+          <q-btn :to="$q.screen.gt.xs? $route.path : 'user'" round flat >
             <q-avatar size="26px">
               <img src="https://cdn.quasar.dev/img/boy-avatar.png" alt="avatar">
             </q-avatar>
-            <q-tooltip content-class="bg-indigo" transition-show="rotate" transition-hide="rotate">
-              Account
-            </q-tooltip>
+            <q-menu v-if="$q.screen.gt.xs" transition-show="rotate" transition-hide="rotate">
+                <q-btn to="user" icon="mdi-account" label="个人中心" class="full-width" no-caps unelevated />
+                <q-separator />
+                <q-btn to="user/setting" icon="mail" label="账户设置" class="full-width" no-caps unelevated />
+                <q-separator />
+                <q-btn to="user/login" color="negative" icon="mail" label="登出" class="full-width" align="left" no-caps @click="$store.dispatch('auth/logout');"/>
+            </q-menu>
           </q-btn>
         </div>
       </q-toolbar>
@@ -151,6 +162,7 @@ import EssentialLink from '../components/EssentialLink'
 const linksData = [
   {
     title: 'Home',
+    caption: '主页',
     icon: 'mdi-home',
     to: 'index'
   },

@@ -5,8 +5,8 @@ import {
 } from 'quasar'
 
 export default axios.create({
-  baseURL: process.env.VUE_APP_BASE_API,
-  // baseURL: 'https://webmall-server.herokuapp.com/api',
+  // baseURL: process.env.VUE_APP_BASE_API,
+  baseURL: 'https://webmall-server.herokuapp.com/api',
   // baseURL: 'http://localhost:8086/api',
   headers: {
     'Content-type': 'application/json;charset=utf-8'

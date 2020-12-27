@@ -13,10 +13,10 @@
   >
     <q-carousel-slide :name="1" img-src="http://img.aruoxi.top/webmall/banner1.png" />
     <q-carousel-slide :name="2" img-src="http://img.aruoxi.top/webmall/banner2.png" />
-    <q-carousel-slide :name="3" img-src="https://cdn.quasar.dev/img/mountains.jpg" />
-    <q-carousel-slide :name="4" img-src="https://cdn.quasar.dev/img/parallax1.jpg" />
-    <q-carousel-slide :name="5" img-src="https://cdn.quasar.dev/img/parallax2.jpg" />
-    <q-carousel-slide :name="6" img-src="https://cdn.quasar.dev/img/quasar.jpg" />
+<!--    <q-carousel-slide :name="3" img-src="https://cdn.quasar.dev/img/mountains.jpg" />-->
+<!--    <q-carousel-slide :name="4" img-src="https://cdn.quasar.dev/img/parallax1.jpg" />-->
+<!--    <q-carousel-slide :name="5" img-src="https://cdn.quasar.dev/img/parallax2.jpg" />-->
+<!--    <q-carousel-slide :name="6" img-src="https://cdn.quasar.dev/img/quasar.jpg" />-->
   </q-carousel>
 </template>
 

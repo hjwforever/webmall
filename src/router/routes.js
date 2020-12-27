@@ -7,6 +7,7 @@ const routes = [
       {
         path: '',
         alias: '/index',
+        name: 'home',
         component: () => import('pages/Index.vue')
       },
       {
