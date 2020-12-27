@@ -19,7 +19,7 @@ const routes = [
       },
       {
         path: '/user',
-        component: () => import('pages/user')
+        component: () => import('pages/User')
       }
     ]
   },
