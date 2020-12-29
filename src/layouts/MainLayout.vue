@@ -134,28 +134,29 @@
     </q-drawer>
     <q-page-container v-scroll="scrolled">
       <router-view />
-    </q-page-container>
-    <q-page-sticky position="bottom-right" :offset="fabPos">
-      <q-fab
-          icon="keyboard_arrow_up"
-          direction="up"
-          color="blue"
-          :disable="draggingFab"
-          v-touch-pan.prevent.mouse="moveFab"
-      >
-        <q-fab-action to="/user" color="primary" icon="person" :disable="draggingFab" external-label label-position="left" label="账户" />
-        <q-fab-action @click="right=!right" color="primary" icon="message" :disable="draggingFab" external-label label-position="left" label="消息" />
-        <q-fab-action
-            color="primary"
-            @click="$q.fullscreen.toggle()"
-            :icon="$q.fullscreen.isActive ? 'fullscreen_exit' : 'fullscreen'"
+      <q-page-sticky position="bottom-right" :offset="fabPos">
+        <q-fab
+            icon="keyboard_arrow_up"
+            direction="up"
+            color="blue"
             :disable="draggingFab"
-            external-label
-            label-position="left"
-            :label="$q.fullscreen.isActive ? '退出全屏' : '全屏'"
-        />
-      </q-fab>
-    </q-page-sticky>
+            v-touch-pan.prevent.mouse="moveFab"
+        >
+          <q-fab-action to="/user" color="primary" icon="person" :disable="draggingFab" external-label label-position="left" label="账户" />
+          <q-fab-action @click="right=!right" color="primary" icon="message" :disable="draggingFab" external-label label-position="left" label="消息" />
+          <q-fab-action
+              v-if="$q.screen.gt.xs"
+              color="primary"
+              @click="$q.fullscreen.toggle()"
+              :icon="$q.fullscreen.isActive ? 'fullscreen_exit' : 'fullscreen'"
+              :disable="draggingFab"
+              external-label
+              label-position="left"
+              :label="$q.fullscreen.isActive ? '退出全屏' : '全屏'"
+          />
+        </q-fab>
+      </q-page-sticky>
+    </q-page-container>
   </q-layout>
 </template>
 
