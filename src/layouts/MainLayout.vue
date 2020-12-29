@@ -55,13 +55,6 @@
         <q-space />
 
         <div class="q-gutter-sm row items-center no-wrap">
-          <q-btn
-              color="secondary"
-              @click="$q.fullscreen.toggle()"
-              :icon="$q.fullscreen.isActive ? 'fullscreen_exit' : 'fullscreen'"
-              :label="$q.fullscreen.isActive ? '退出全屏' : '全屏'"
-          />
-
           <q-btn to="cart" round dense flat color="blue-8" icon="mdi-cart-variant">
             <q-badge color="red" text-color="white" floating transparent>
               2
@@ -141,17 +134,28 @@
     </q-drawer>
     <q-page-container v-scroll="scrolled">
       <router-view />
-<!--      <q-page padding style="padding-top: 66px">-->
-<!--        <p v-for="n in 100" :key="n">-->
-<!--          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?-->
-<!--        </p>-->
-
-<!--        <q-page-scroller position="bottom-right" :scroll-offset="150" :offset="[18, 18]">-->
-<!--          <q-btn fab icon="keyboard_arrow_up" color="blue" />-->
-<!--        </q-page-scroller>-->
-
-<!--     </q-page>-->
     </q-page-container>
+    <q-page-sticky position="bottom-right" :offset="fabPos">
+      <q-fab
+          icon="keyboard_arrow_up"
+          direction="up"
+          color="blue"
+          :disable="draggingFab"
+          v-touch-pan.prevent.mouse="moveFab"
+      >
+        <q-fab-action to="/user" color="primary" icon="person" :disable="draggingFab" external-label label-position="left" label="账户" />
+        <q-fab-action @click="right=!right" color="primary" icon="message" :disable="draggingFab" external-label label-position="left" label="消息" />
+        <q-fab-action
+            color="primary"
+            @click="$q.fullscreen.toggle()"
+            :icon="$q.fullscreen.isActive ? 'fullscreen_exit' : 'fullscreen'"
+            :disable="draggingFab"
+            external-label
+            label-position="left"
+            :label="$q.fullscreen.isActive ? '退出全屏' : '全屏'"
+        />
+      </q-fab>
+    </q-page-sticky>
   </q-layout>
 </template>
 
@@ -206,12 +210,27 @@ export default {
       right: false,
       leftDrawerOpen: false,
       essentialLinks: linksData,
-      miniState: true
+      miniState: true,
+      fabPos: [18, 18],
+      draggingFab: false
     }
   },
   methods: {
     scrolled: debounce(function(position) {
-    }, 200)
+    }, 200),
+
+    onClick() {
+      // console.log('Clicked it')
+    },
+
+    moveFab(ev) {
+      this.draggingFab = ev.isFirst !== true && ev.isFinal !== true
+
+      this.fabPos = [
+        this.fabPos[0] - ev.delta.x,
+        this.fabPos[1] - ev.delta.y
+      ]
+    }
   },
   created() {
     this.fabYoutube = fabYoutube
