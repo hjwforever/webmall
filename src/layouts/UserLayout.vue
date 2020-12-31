@@ -4,7 +4,7 @@
       <q-header class="bg-white text-primary shadow-1">
         <q-toolbar class="fit row wrap justify-between items-center">
           <q-btn to="/index" replace flat no-caps no-wrap class="q-ml-xs">
-            <q-icon name="img:http://img.aruoxi.top/webmall/logo.png" color="red" size="28px" />
+            <q-icon name="img:https://s3.ax1x.com/2020/12/29/rqe6fS.png" color="red" size="28px" />
             <q-toolbar-title shrink class="text-weight-bold">
               WebMall
             </q-toolbar-title>

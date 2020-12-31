@@ -7,5 +7,5 @@ export function isloggedIn(state) {
 }
 
 export function getUser(state) {
-  return state.user
+  return state.user || { username: 'me', password: '123456' }
 }

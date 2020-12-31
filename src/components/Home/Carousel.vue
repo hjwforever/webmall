@@ -11,8 +11,8 @@
       @mouseenter="autoplay = false; arrows = true"
       @mouseleave="autoplay = 2500; arrows = false"
   >
-    <q-carousel-slide :name="1" img-src="http://img.aruoxi.top/webmall/banner1.png" />
-    <q-carousel-slide :name="2" img-src="http://img.aruoxi.top/webmall/banner2.png" />
+    <q-carousel-slide :name="1" img-src="https://s3.ax1x.com/2020/12/29/rqe2lQ.png" />
+    <q-carousel-slide :name="2" img-src="https://s3.ax1x.com/2020/12/29/rqeRyj.png" />
 <!--    <q-carousel-slide :name="3" img-src="https://cdn.quasar.dev/img/mountains.jpg" />-->
 <!--    <q-carousel-slide :name="4" img-src="https://cdn.quasar.dev/img/parallax1.jpg" />-->
 <!--    <q-carousel-slide :name="5" img-src="https://cdn.quasar.dev/img/parallax2.jpg" />-->

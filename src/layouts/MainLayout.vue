@@ -36,7 +36,7 @@
 
         <q-btn v-if="$q.screen.gt.xs" to="/" flat no-caps no-wrap class="q-ml-xs" >
 <!--          <q-icon :name="fabYoutube" color="red" size="28px" />-->
-          <q-icon name="img:http://img.aruoxi.top/webmall/logo.png" color="red" size="28px" />
+          <q-icon name="img:https://s3.ax1x.com/2020/12/29/rqe6fS.png" color="red" size="28px" />
           <q-toolbar-title shrink class="text-weight-bold">
             WebMall
           </q-toolbar-title>
@@ -87,14 +87,14 @@
           </q-btn>
           <q-btn :to="$q.screen.gt.xs? $route.path : 'user'" round flat >
             <q-avatar size="26px">
-              <img src="https://cdn.quasar.dev/img/boy-avatar.png" alt="avatar">
+              <img src="https://s3.ax1x.com/2020/12/30/rq3lmF.png" alt="avatar">
             </q-avatar>
             <q-menu v-if="$q.screen.gt.xs" transition-show="rotate" transition-hide="rotate">
                 <q-btn to="user" icon="mdi-account" label="个人中心" class="full-width" no-caps unelevated />
                 <q-separator />
                 <q-btn to="user/setting" icon="mail" label="账户设置" class="full-width" no-caps unelevated />
                 <q-separator />
-                <q-btn to="user/login" color="negative" icon="mail" label="登出" class="full-width" align="left" no-caps @click="$store.dispatch('auth/logout');"/>
+                <q-btn to="user/login" color="negative" icon="mail" label="登出" class="full-width" align="left" no-caps @click="$store.dispatch('auth/logout')"/>
             </q-menu>
           </q-btn>
         </div>
@@ -129,20 +129,25 @@
         />
       </q-list>
     </q-drawer>
-    <q-drawer v-model="right" side="right" overlay elevated>
-      <q-toolbar-title>Right</q-toolbar-title>
+    <q-drawer
+        v-model="right"
+        side="right"
+        overlay
+        elevated>
+      <ChatMessage :items="chatItems" />
     </q-drawer>
     <q-page-container v-scroll="scrolled">
       <router-view />
       <q-page-sticky position="bottom-right" :offset="fabPos">
         <q-fab
-            icon="keyboard_arrow_up"
+            icon="add"
             direction="up"
             color="blue"
             :disable="draggingFab"
             v-touch-pan.prevent.mouse="moveFab"
         >
           <q-fab-action to="/user" color="primary" icon="person" :disable="draggingFab" external-label label-position="left" label="账户" />
+          <q-fab-action to="/user/login" @click="$store.dispatch('auth/logout')" color="negative" icon="mdi-logout-variant" :disable="draggingFab" external-label label-position="left" label="登出" />
           <q-fab-action @click="right=!right" color="primary" icon="message" :disable="draggingFab" external-label label-position="left" label="消息" />
           <q-fab-action
               v-if="$q.screen.gt.xs"
@@ -164,6 +169,8 @@
 import { fabYoutube, fabGithub } from '@quasar/extras/fontawesome-v5'
 import { debounce } from 'quasar'
 import EssentialLink from '../components/EssentialLink'
+import ChatMessage from 'components/Message/ChatMessage'
+
 const linksData = [
   {
     title: 'Home',
@@ -204,7 +211,7 @@ const linksData = [
 ]
 
 export default {
-  components: { EssentialLink },
+  components: { EssentialLink, ChatMessage },
   data() {
     return {
       search: '',
@@ -213,7 +220,31 @@ export default {
       essentialLinks: linksData,
       miniState: true,
       fabPos: [18, 18],
-      draggingFab: false
+      draggingFab: false,
+      chatItems: [
+        {
+          name: '>me<',
+          avatar: 'https://s3.ax1x.com/2020/12/31/rvyZtJ.jpg',
+          //       https://s3.ax1x.com/2020/12/31/rvyZtJ.jpg 头像
+          //       https://s3.ax1x.com/2020/12/31/rvyeh9.jpg
+          //       https://s3.ax1x.com/2020/12/31/rvyVk4.jpg
+          //       https://s3.ax1x.com/2020/12/31/rvyA7F.jpg
+          //       https://s3.ax1x.com/2020/12/31/rvyk0U.jpg
+          text: ['hello🤣'],
+          textColor: 'white',
+          bgColor: 'primary',
+          stamp: '3 minutes age',
+          sent: true
+        },
+        {
+          name: '<span class=\'text-positive\'>Jane</span>',
+          avatar: 'https://s3.ax1x.com/2020/12/31/rvyeh9.jpg',
+          text: ['doing fine😊<img src="https://image.aruoxi.com/webmall/emoji/discord-omq.png" class="my-emoticon">, how r you<q-icon name=\'font_download\' />?'],
+          textColor: 'white',
+          bgColor: 'amber',
+          stamp: 'now'
+        }
+      ]
     }
   },
   methods: {
@@ -283,4 +314,9 @@ export default {
 
 .carouselInput .subtitle
   font-size: 16px
+
+.my-emoticon
+  vertical-align: middle
+  height: 2em
+  width: 2em
 </style>

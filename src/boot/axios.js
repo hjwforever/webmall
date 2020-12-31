@@ -11,7 +11,7 @@ export default axios.create({
   headers: {
     'Content-type': 'application/json;charset=utf-8'
   },
-  timeout: 10000
+  timeout: 20000
 })
 
 // 请求拦截器
