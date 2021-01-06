@@ -64,11 +64,14 @@ module.exports = function(ctx) {
       // extractCSS: false,
       env: ctx.dev
         ? {
-          // VUE_APP_BASE_API: 'http://localhost:8086/api'
-          VUE_APP_BASE_API: 'https://webmall-server.herokuapp.com/api'
+          VUE_APP_BASE_API: 'http://localhost:8086/api'
+          // VUE_APP_BASE_API: 'https://webmall-server.herokuapp.com/api'
+          // VUE_APP_BASE_API: 'https://webmall.aruoxi.com/api'
         }
         : {
-          VUE_APP_BASE_API: 'https://webmall-server.herokuapp.com/api'
+          VUE_APP_BASE_API: 'http://localhost:8086/api'
+          // VUE_APP_BASE_API: 'https://webmall-server.herokuapp.com/api'
+          // VUE_APP_BASE_API: 'https://webmall.aruoxi.com/api'
         },
       // https://quasar.dev/quasar-cli/handling-webpack
       extendWebpack(cfg) {

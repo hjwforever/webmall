@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hHh LpR lFf" class="q-ma-lg-lg">
+  <q-layout view="hHh LpR lFr" class="q-ma-lg-lg">
     <!--模拟系统栏-->
 <!--    <q-header elevated class="bg-primary text-white" height-hint="98">-->
 <!--      <q-bar class="mobile">-->
@@ -87,7 +87,7 @@
           </q-btn>
           <q-btn :to="$q.screen.gt.xs? $route.path : 'user'" round flat >
             <q-avatar size="26px">
-              <img src="https://s3.ax1x.com/2020/12/30/rq3lmF.png" alt="avatar">
+              <img :src="currentUser.avatar" alt="avatar">
             </q-avatar>
             <q-menu v-if="$q.screen.gt.xs" transition-show="rotate" transition-hide="rotate">
                 <q-btn to="user" icon="mdi-account" label="个人中心" class="full-width" no-caps unelevated />
@@ -134,7 +134,7 @@
         side="right"
         overlay
         elevated>
-      <ChatMessage :items="chatItems" />
+      <ChatMessage ref='chatMessage' v-on:hideRight="right=false"/>
     </q-drawer>
     <q-page-container v-scroll="scrolled">
       <router-view />
@@ -264,9 +264,21 @@ export default {
       ]
     }
   },
+  computed: {
+    currentUser() {
+      return this.$store.getters['auth/getUser']
+    }
+  },
   created() {
     this.fabYoutube = fabYoutube
     this.fabGithub = fabGithub
+  },
+  watch: {
+    right(show) {
+      if (show) {
+        this.$refs.chatMessage.initWebSocket()
+      } else this.$refs.chatMessage.close()
+    }
   }
 }
 </script>
