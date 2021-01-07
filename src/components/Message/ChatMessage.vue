@@ -46,7 +46,7 @@
       </q-slide-transition>
       <q-toolbar class="justify-between">
           <q-icon class="q-pa-none" round size="md" color="orange" name="mdi-emoticon-happy-outline" @click="emoji = !emoji" />
-          <q-input ref="sendMsg" v-model="contentText" @keyup.enter.ctrl="contentText+'2\n'" square outlined autogrow dense clearable clear-icon="close" class="q-mx-sm"/>
+          <q-input ref="sendMsg" v-model="contentText" @keydown.enter.native="keyDown" square outlined autogrow dense clearable clear-icon="close" class="q-mx-sm"/>
           <q-icon class="q-pa-none" round size="md" color="secondary" name="send" @click="sendText()" />
       </q-toolbar>
     </q-footer>
@@ -133,12 +133,25 @@ export default {
       }, 500)
     },
 
+    keyDown(e) {
+      if (e.ctrlKey && e.keyCode === 13) { // 用户点击了ctrl+enter触发
+        this.contentText += '\n'
+      } else { // 用户点击了enter触发
+        this.sendText()
+      }
+    },
+
     // 初始化websocket连接
     initWebSocket() {
       // const _this = this
       // 判断页面有没有存在websocket连接
       if (window.WebSocket) {
-        const ws = new WebSocket('ws://localhost:8181/ws')
+        const ws = new WebSocket('ws://webmall.aruoxi.com:8181/ws')
+        // const ws = new WebSocket('ws://localhost:8181', {
+        //   protocolVersion: 8,
+        //   origin: 'https://localhost:8085',
+        //   rejectUnauthorized: false
+        // })
         this.ws = ws
         ws.onopen = this.onopen
         ws.onclose = this.onclose
