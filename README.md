@@ -8,7 +8,7 @@ A Web Mall based on vue, express for SPA, Electron, (Corondova)Android applicati
 npm install
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc)
+### Start the app in development mode (hot-code reloading, error reporting, etc.)
 
 ```bash
 quasar dev
