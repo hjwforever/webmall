@@ -1,7 +1,24 @@
-# webmall (webmall)
+# WebMall
 
-A Web Mall based on vue, express for SPA, Electron, (Corondova)Android application and etc.
+A Web Mall based on  Vue and Express for SPA, Electron, (Corondova)Android application and etc.
 
+[Preview Website](http://web-mall.herokuapp.com/)
+
+## Images
+
+### HomePage
+![homepage](https://cdn.jsdelivr.net/gh/hjwforever/images@main/img/Project/WebMall/homepage.png)
+
+### ChartRoom
+![chartRoom](https://cdn.jsdelivr.net/gh/hjwforever/images@main/img/Project/WebMall/chartRoom.png)
+
+### Login&Register Page
+![login](https://cdn.jsdelivr.net/gh/hjwforever/images@main/img/Project/WebMall/login.png)
+
+### Electron Application
+![Project/WebMall/electron](https://cdn.jsdelivr.net/gh/hjwforever/images@main/img/Project/WebMall/electron.png)
+
+```
 ## Install the dependencies
 
 ```bash
@@ -25,7 +42,3 @@ npm run lint
 ```bash
 quasar build
 ```
-
-### Customize the configuration
-
-See [Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).
