@@ -1,5 +1,7 @@
 # webmall
 
+[preview website](http://web-mall.herokuapp.com/)
+
 > A web mall based on vue and django, suitable for mobile and PC; And this is its front-end project
 
 ## Build Setup
