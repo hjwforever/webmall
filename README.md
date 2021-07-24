@@ -5,11 +5,18 @@
 > A web mall based on vue and django, suitable for mobile and PC; And this is its front-end project
 
 ## Images
+
+### HomePage
 ![homepage](https://cdn.jsdelivr.net/gh/hjwforever/images@main/img/Project/WebMall/homepage.png)
 
+### ChartRoom
 ![chartRoom](https://cdn.jsdelivr.net/gh/hjwforever/images@main/img/Project/WebMall/chartRoom.png)
 
+### Login&Register Page
 ![login](https://cdn.jsdelivr.net/gh/hjwforever/images@main/img/Project/WebMall/login.png)
+
+### Electron Application
+![Project/WebMall/electron](https://cdn.jsdelivr.net/gh/hjwforever/images@main/img/Project/WebMall/electron.png)
 
 ## Build Setup
 
