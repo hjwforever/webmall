@@ -66,12 +66,16 @@ module.exports = function(ctx) {
         ? {
           // VUE_APP_BASE_API: 'http://localhost:8086/api'
           // VUE_APP_BASE_API: 'https://webmall-server.herokuapp.com/api'
-          VUE_APP_BASE_API: 'http://webmall.aruoxi.com/api'
+          VUE_APP_BASE_API: 'http://web-mall.herokuapp.com/api',
+          VUE_APP_WS_URL: 'ws://webmall.aruoxi.com:8181/ws'
+          // VUE_APP_BASE_API: 'http://webmall.aruoxi.com/api'
         }
         : {
           // VUE_APP_BASE_API: 'http://localhost:8086/api'
           // VUE_APP_BASE_API: 'https://webmall-server.herokuapp.com/api'
-          VUE_APP_BASE_API: 'http://webmall.aruoxi.com/api'
+          VUE_APP_BASE_API: 'http://web-mall.herokuapp.com/api',
+          VUE_APP_WS_URL: 'ws://webmall.aruoxi.com:8181/ws'
+          // VUE_APP_BASE_API: 'http://webmall.aruoxi.com/api'
         },
       // https://quasar.dev/quasar-cli/handling-webpack
       extendWebpack(cfg) {

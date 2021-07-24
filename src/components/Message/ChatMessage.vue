@@ -146,7 +146,7 @@ export default {
       // const _this = this
       // 判断页面有没有存在websocket连接
       if (window.WebSocket) {
-        const ws = new WebSocket('ws://webmall.aruoxi.com:8181/ws')
+        const ws = new WebSocket(process.env.VUE_APP_WS_URL)
         // const ws = new WebSocket('ws://localhost:8181', {
         //   protocolVersion: 8,
         //   origin: 'https://localhost:8085',
